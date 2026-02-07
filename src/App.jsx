@@ -917,16 +917,27 @@ export default function SafediXWebsite() {
             <div>
               <h4 className="text-white font-bold mb-3 text-sm sm:text-base">Connect</h4>
               <ul className="space-y-2 text-sm">
-                <li><a href="tel:+918130206718" className="hover:text-orange-400 transition-colors">+91 9136044030</a></li>
-                  <li>
-      <a
-        href="mailto:bharatnestconsumer@gmail.com?subject=Inquiry%20from%20Website&body=Hello%20BharatNest%20Team,%0D%0A%0D%0A"
-        className="hover:text-orange-400 transition-colors break-all"
-      >
-        bharatnestconsumer@gmail.com
-      </a>
-    </li>
-              </ul>
+  <li>
+    <a
+      href="mailto:bharatnestconsumer@gmail.com"
+      className="hover:text-orange-400"
+    >
+      Email (Mail App)
+    </a>
+  </li>
+
+  <li>
+    <a
+      href="https://mail.google.com/mail/?view=cm&fs=1&to=bharatnestconsumer@gmail.com"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="hover:text-orange-400"
+    >
+      Email via Gmail
+    </a>
+  </li>
+</ul>
+
             </div>
           </div>
 

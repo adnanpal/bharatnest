@@ -1,13 +1,21 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Menu, X, ChevronRight, Sparkles, Droplets, Shield, Heart, Leaf, Star, Phone, Mail, MapPin, Package, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronRight, Sparkles, Droplets, Shield, Heart, Leaf, Star, Phone, Mail, MapPin, Package, ChevronDown, FlaskConical, Workflow, Factory, FileCheck2, Handshake } from 'lucide-react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import Autoplay from 'embla-carousel-autoplay';
+import { MessageCircle } from "lucide-react";
 import './App.css';
 
 export default function SafediXWebsite() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const phoneNumber = '1234567890'; // Replace with your WhatsApp number (country code + number)
+  const message = 'Hello! I would like to connect with you.'; // Optional pre-filled message
+  
+  const handleClick = () => {
+    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
+  };
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -110,7 +118,7 @@ export default function SafediXWebsite() {
 
   const animateCounters = () => {
     const duration = 2000;
-    const targets = { years: 10, customers: 5, germRemoval: 99.9, quality: 100 };
+    const targets = { years: 15, customers: 20, germRemoval: 20, quality: 100 };
     const startTime = Date.now();
 
     const animate = () => {
@@ -120,7 +128,7 @@ export default function SafediXWebsite() {
       setCounts({
         years: Math.floor(targets.years * progress),
         customers: Math.floor(targets.customers * progress),
-        germRemoval: (targets.germRemoval * progress).toFixed(1),
+        germRemoval: Math.floor(targets.germRemoval * progress),
         quality: Math.floor(targets.quality * progress)
       });
 
@@ -161,34 +169,34 @@ export default function SafediXWebsite() {
 
   const features = [
     {
-      icon: <Sparkles className="w-12 h-12" />,
-      title: "Superior Whiteness",
-      description: "Advanced formula that removes tough stains while keeping your whites brilliantly white wash after wash."
+      icon: <Workflow className="w-12 h-12" />,
+      title: "End-to-End Execution, Simplified",
+      description: "BharatNest manages the complete product lifecycle—from ideation and formulation to packaging, manufacturing, logistics, and market launch—allowing you to focus on growth while we handle the operational complexity."
     },
     {
-      icon: <Droplets className="w-12 h-12" />,
-      title: "Deep Cleaning Power",
-      description: "Penetrates deep into fabric fibers to remove dirt, grime, and odors effectively in all water types."
+      icon: <FlaskConical className="w-12 h-12" />,
+      title: "Strong R&D Capability",
+      description: "With in-house food product research and development, we specialize in new product formulation, continuous improvement, and innovation-driven solutions aligned with market and regulatory needs."
     },
     {
-      icon: <Shield className="w-12 h-12" />,
-      title: "Fabric Protection",
-      description: "Gentle on fabrics while tough on stains. Maintains fabric quality and extends garment life."
+      icon: <Factory className="w-12 h-12" />,
+      title: "Global Certified Manufacturing Network",
+      description: "We work with audited and internationally compliant manufacturing partners across multiple countries, ensuring consistent quality, scalability, and export-ready production standards."
     },
     {
-      icon: <Heart className="w-12 h-12" />,
-      title: "Skin Friendly",
-      description: "Dermatologically tested formula that's safe for sensitive skin and gentle on hands."
+      icon: <Package className="w-12 h-12" />,
+      title: "Branding & Packaging Expertise",
+      description: "Our team delivers professional private-label branding and packaging designs that are visually compelling, shelf-ready, and optimized for modern retail and global markets."
     },
     {
-      icon: <Leaf className="w-12 h-12" />,
-      title: "Eco-Conscious",
-      description: "Biodegradable ingredients that are safe for the environment without compromising cleaning power."
+      icon: <FileCheck2 className="w-12 h-12" />,
+      title: "Regulatory & Compliance Support",
+      description: "BharatNest provides country-specific certification guidance, export documentation assistance, and quality system support to ensure smooth and compliant market entry."
     },
     {
-      icon: <Star className="w-12 h-12" />,
-      title: "Long-Lasting Freshness",
-      description: "Infused with refreshing fragrance that keeps clothes smelling fresh for days."
+      icon: <Handshake className="w-12 h-12" />,
+      title: "Trusted Private-Label Partner",
+      description: "More than a sourcing company, BharatNest acts as a strategic partner—helping brands build, scale, and launch products with confidence across global markets."
     }
   ];
 
@@ -203,32 +211,28 @@ export default function SafediXWebsite() {
 
   const products = [
     {
-      name: "SAFEDI X Starter",
-      size: "500g",
-      price: "₹99",
-      description: "Perfect for trying our premium formula",
-      badge: "Trial Pack"
+      name: "Beverages",
     },
     {
-      name: "SAFEDI X Family",
-      size: "1kg",
-      price: "₹179",
-      description: "Ideal for small to medium families",
-      badge: "Popular"
+      name: "Instant drink and food mixes",
     },
     {
-      name: "SAFEDI X Value",
-      size: "2kg",
-      price: "₹329",
-      description: "Best value for regular use",
-      badge: "Best Value"
+      name: "Snacks",
     },
     {
-      name: "SAFEDI X Jumbo",
-      size: "5kg",
-      price: "₹749",
-      description: "Maximum savings for large families",
-      badge: "Save More"
+      name: "Staples and grocery products",
+    },
+    {
+      name: "Personal care products",
+    },
+    {
+      name: "Home care & cleaning products",
+    },
+    {
+      name: "Packaging products",
+    },
+    {
+      name: "Consumer goods",
     }
   ];
 
@@ -345,14 +349,54 @@ export default function SafediXWebsite() {
   ];
 
   return (
-    <div className="min-h-screen bg-white overflow-x-hidden">
+    <div className="min-h-screen bg-white">
+      <style>{`
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-50px) rotate(180deg); }
+        }
+        .float-animation {
+            animation: float 20s infinite;
+        }
+        .float-delay-1 {
+            animation-delay: 0s;
+        }
+        .float-delay-2 {
+            animation-delay: 5s;
+        }
+        .float-delay-3 {
+            animation-delay: 10s;
+        }
+        @keyframes glow {
+            0%, 100% { filter: drop-shadow(0 0 20px rgba(20, 184, 166, 0.5)); }
+            50% { filter: drop-shadow(0 0 40px rgba(251, 146, 60, 0.8)); }
+        }
+        .glow-animation {
+            animation: glow 3s ease-in-out infinite;
+        }
+        .shine-effect::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+        .shine-effect:hover::before {
+            left: 100%;
+        `}
+      </style>
+
+
       {/* Navigation */}
-      <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-lg' : 'bg-white/95 backdrop-blur-sm'}`}>
+      <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-sm z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
             {/* Logo */}
-            <div className="shrink-0 logo-bounce">
+            <div className="shrink-0">
               <div className="flex items-center gap-0">
                 {/* Logo Image */}
                 <img
@@ -376,19 +420,19 @@ export default function SafediXWebsite() {
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
-              <a href="#home" className="text-gray-700 hover:text-blue-600 transition-all font-medium hover:scale-105">Home</a>
-              <a href="#features" className="text-gray-700 hover:text-blue-600 transition-all font-medium hover:scale-105">Features</a>
-              <a href="#products" className="text-gray-700 hover:text-blue-600 transition-all font-medium hover:scale-105">Products</a>
-              <a href="#benefits" className="text-gray-700 hover:text-blue-600 transition-all font-medium hover:scale-105">Benefits</a>
-              <a href="#faq" className="text-gray-700 hover:text-blue-600 transition-all font-medium hover:scale-105">FAQ</a>
-              <a href="#contact" className="bg-blue-600 text-white px-6 py-2.5 rounded-full hover:bg-blue-700 transition-all shadow-lg hover:shadow-xl font-medium hover:scale-105">
+              <a href="#home" className="text-gray-700 hover:text-teal-600 transition-all font-medium hover:scale-105">Home</a>
+              <a href="#features" className="text-gray-700 hover:text-teal-600 transition-all font-medium hover:scale-105">Features</a>
+              <a href="#products" className="text-gray-700 hover:text-teal-600 transition-all font-medium hover:scale-105">Products</a>
+              <a href="#benefits" className="text-gray-700 hover:text-teal-600 transition-all font-medium hover:scale-105">Benefits</a>
+              <a href="#faq" className="text-gray-700 hover:text-teal-600 transition-all font-medium hover:scale-105">FAQ</a>
+              <a href="#contact" className="bg-linear-to-r from-orange-500 to-orange-600 text-white px-6 py-2.5 rounded-full hover:from-orange-600 hover:to-orange-700 transition-all shadow-lg hover:shadow-xl font-medium hover:scale-105">
                 Contact Us
               </a>
             </div>
 
             {/* Mobile menu button */}
             <button
-              className="md:hidden text-gray-900 hover:text-blue-600 transition-colors p-2"
+              className="md:hidden text-gray-900 hover:text-teal-600 transition-colors p-2"
               onClick={() => setMenuOpen(!menuOpen)}
               aria-label="Toggle menu"
             >
@@ -401,42 +445,42 @@ export default function SafediXWebsite() {
             <div className="py-4 space-y-3 border-t border-gray-100">
               <a
                 href="#home"
-                className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors font-medium"
+                className="block px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-lg transition-colors font-medium"
                 onClick={() => setMenuOpen(false)}
               >
                 Home
               </a>
               <a
                 href="#features"
-                className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors font-medium"
+                className="block px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-lg transition-colors font-medium"
                 onClick={() => setMenuOpen(false)}
               >
                 Features
               </a>
               <a
                 href="#products"
-                className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors font-medium"
+                className="block px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-lg transition-colors font-medium"
                 onClick={() => setMenuOpen(false)}
               >
                 Products
               </a>
               <a
                 href="#benefits"
-                className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors font-medium"
+                className="block px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-lg transition-colors font-medium"
                 onClick={() => setMenuOpen(false)}
               >
                 Benefits
               </a>
               <a
                 href="#faq"
-                className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors font-medium"
+                className="block px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-lg transition-colors font-medium"
                 onClick={() => setMenuOpen(false)}
               >
                 FAQ
               </a>
               <a
                 href="#contact"
-                className="block px-4 py-2 bg-blue-600 text-white text-center rounded-lg hover:bg-blue-700 transition-colors font-medium"
+                className="block px-4 py-2 bg-linear-to-r from-orange-500 to-orange-600 text-white text-center rounded-lg hover:from-orange-600 hover:to-orange-700 transition-colors font-medium"
                 onClick={() => setMenuOpen(false)}
               >
                 Contact Us
@@ -447,56 +491,66 @@ export default function SafediXWebsite() {
       </nav>
 
       {/* Hero Section */}
-      <section id="home" ref={heroRef} className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-linear-to-br from-blue-50 via-white to-blue-100 relative overflow-hidden">
+      <section id="home" ref={heroRef} className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-linear-to-br from-emerald-800 to-teal-700 relative overflow-hidden">
+
         {/* Decorative elements */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-blue-200 rounded-full opacity-20 blur-3xl animate-pulse-slow"></div>
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-300 rounded-full opacity-20 blur-3xl animate-pulse-slow" style={{ animationDelay: '1s' }}></div>
+
+        <div className="absolute top-0 right-0 w-96 h-96 bg-orange-200 rounded-full opacity-20 blur-3xl animate-pulse-slow"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-teal-300 rounded-full opacity-20 blur-3xl animate-pulse-slow" style={{ animationDelay: '1s' }}></div>
+        <div class="inset-0 pointer-events-none overflow-hidden">
+          <div class="absolute w-48 h-48 bg-teal-500 rounded-full opacity-10 top-[10%] left-[10%] float-animation float-delay-1"></div>
+          <div class="absolute w-36 h-36 bg-orange-500 rounded-full opacity-10 top-[60%] right-[15%] float-animation float-delay-2"></div>
+          <div class="absolute w-24 h-24 bg-green-500 rounded-full opacity-10 bottom-[20%] left-[20%] float-animation float-delay-3"></div>
+        </div>
 
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
+
             <div className="space-y-6">
-              <div className="inline-flex items-center bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-semibold opacity-100 translate-y-0">
+              <div className="inline-flex items-center bg-linear-to-r from-orange-100 to-teal-100 text-teal-800 px-4 py-2 rounded-full text-sm font-semibold opacity-100 translate-y-0">
                 ✨BharatNest Industries Pvt. Ltd.
               </div>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-gray-900 leading-tight">
-                <span className="block fade-in-up" style={{ animationDelay: '0.2s' }}>Sourcing And</span>
-                <span className="block text-blue-600 fade-in-up" style={{ animationDelay: '0.3s' }}>Private-Label</span>
-                <span className="block bg-linear-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent fade-in-up md:typing-effect">Solutions</span>
+              <h1 className="text-4xl sm:text-5xl  lg:text-6xl font-black text-gray-900 leading-tight">
+                <span className="block  bg-linear-to-r from-white via-green-100 to-orange-400 bg-clip-text text-transparent fade-in-right" style={{ animationDelay: '0.2s' }}>Sourcing And</span>
+                <span className="block  bg-linear-to-r from-white via-green-100 to-orange-400 bg-clip-text text-transparent fade-in-right" style={{ animationDelay: '0.3s' }}>Private-Label</span>
+                <span className="block bg-linear-to-r from-white via-green-100 to-orange-400 bg-clip-text text-transparent fade-in-up ">Solutions</span>
               </h1>
-              <p className="text-lg sm:text-2xl text-gray-600 leading-relaxed fade-in-up" style={{ animationDelay: '0.5s' }}>
+              <p className="text-lg sm:text-xl font-serif text-white leading-relaxed fade-in-up" style={{ animationDelay: '0.5s' }}>
                 Integrated product development, sourcing, and private label solutions across food and non-food categories.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 pt-4 fade-in-up" style={{ animationDelay: '0.6s' }}>
-                <a href="#features" className="bg-blue-600 text-white px-8 py-4 rounded-full hover:bg-blue-700 transition-all flex items-center justify-center gap-2 text-lg font-semibold shadow-xl hover:shadow-2xl transform hover:scale-105">
-                  Discover Features <ChevronRight size={20} />
+              <div className=" flex flex-col sm:flex-row gap-4 pt-6 sm:pt-4 fade-in-up w-full px-4 sm:px-0" style={{ animationDelay: '0.6s' }}>
+                <a href="#features" className="inline-block w-full sm:w-auto text-center px-10 py-5 sm:py-4 bg-linear-to-r from-orange-400 to-orange-600 text-white text-lg font-bold rounded-full shadow-[0_10px_30px_rgba(251,146,60,0.4)] hover:shadow-[0_15px_40px_rgba(251,146,60,0.6)] hover:-translate-y-1 transition-all duration-300 relative overflow-hidden shine-effect no-underline self-center sm:self-auto">
+                  Discover Features
                 </a>
-                <a href="#contact" className="bg-white text-blue-600 px-8 py-4 rounded-full hover:bg-gray-50 transition-all border-2 border-blue-600 flex items-center justify-center gap-2 text-lg font-semibold shadow-lg hover:scale-105">
+                <a href="#contact" className="bg-white text-teal-600 px-8 py-4 rounded-full hover:bg-gray-50 transition-all border-2 border-teal-600 flex items-center justify-center gap-2 text-lg font-semibold shadow-lg hover:scale-105">
                   Get in Touch
                 </a>
               </div>
             </div>
 
+
+
             {/* Product Showcase */}
             <div className="relative fade-in-right" style={{ animationDelay: '0.3s' }}>
-              <div className="bg-linear-to-br from-blue-500 to-blue-700 rounded-3xl p-8 sm:p-12 shadow-2xl transform hover:scale-105 transition-transform duration-500 hover-float">
+              <div className="bg-linear-to-br from-teal-500 to-teal-700 rounded-3xl p-8 sm:p-12 shadow-2xl transform hover:scale-105 transition-transform duration-500 hover-float">
                 <div className="bg-white rounded-2xl p-6 sm:p-8 text-center shadow-xl">
-                  <div className="text-6xl sm:text-8xl mb-4 animate-bounce-subtle">🧺</div>
-                  <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">SAFEDI X</h3>
-                  <p className="text-gray-600 font-medium">Premium Detergent Powder</p>
+
+                  <div className="text-6xl sm:text-8xl mb-4 animate-bounce-subtle">📦</div>
+                  <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">BharatNest</h3>
+                  <p className="text-gray-600 font-medium">Product Development And Sourcing</p>
                   <div className="mt-6 flex items-center justify-center gap-2">
-                    <Star className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-400 fill-yellow-400 star-pulse" />
-                    <Star className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-400 fill-yellow-400 star-pulse" style={{ animationDelay: '0.1s' }} />
-                    <Star className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-400 fill-yellow-400 star-pulse" style={{ animationDelay: '0.2s' }} />
-                    <Star className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-400 fill-yellow-400 star-pulse" style={{ animationDelay: '0.3s' }} />
-                    <Star className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-400 fill-yellow-400 star-pulse" style={{ animationDelay: '0.4s' }} />
+                    <Star className="w-5 h-5 sm:w-6 sm:h-6 text-orange-400 fill-orange-400 star-pulse" />
+                    <Star className="w-5 h-5 sm:w-6 sm:h-6 text-orange-400 fill-orange-400 star-pulse" style={{ animationDelay: '0.1s' }} />
+                    <Star className="w-5 h-5 sm:w-6 sm:h-6 text-orange-400 fill-orange-400 star-pulse" style={{ animationDelay: '0.2s' }} />
+                    <Star className="w-5 h-5 sm:w-6 sm:h-6 text-orange-400 fill-orange-400 star-pulse" style={{ animationDelay: '0.3s' }} />
+                    <Star className="w-5 h-5 sm:w-6 sm:h-6 text-orange-400 fill-orange-400 star-pulse" style={{ animationDelay: '0.4s' }} />
                   </div>
                 </div>
               </div>
-              {/* Floating badges */}
-              <div className="absolute -top-4 -right-4 bg-yellow-400 text-gray-900 px-4 sm:px-6 py-2 sm:py-3 rounded-full font-bold shadow-lg transform rotate-12 hidden sm:block hover:rotate-6 transition-transform text-sm sm:text-base">
+              <div className="absolute -top-4 -right-4 bg-orange-400 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-full font-bold shadow-lg transform rotate-12 hidden sm:block hover:rotate-6 transition-transform text-sm sm:text-base">
                 #1 Choice
               </div>
-              <div className="absolute -bottom-4 -left-4 bg-green-400 text-gray-900 px-4 sm:px-6 py-2 sm:py-3 rounded-full font-bold shadow-lg transform -rotate-12 hidden sm:block hover:-rotate-6 transition-transform text-sm sm:text-base">
+              <div className="absolute -bottom-4 -left-4 bg-teal-400 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-full font-bold shadow-lg transform -rotate-12 hidden sm:block hover:-rotate-6 transition-transform text-sm sm:text-base">
                 Eco-Friendly
               </div>
             </div>
@@ -505,23 +559,24 @@ export default function SafediXWebsite() {
       </section>
 
       {/* Trust Indicators */}
+
       <section ref={statsRef} className="py-12 bg-white border-y border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8 text-center">
             <div className="transform hover:scale-110 transition-transform">
-              <div className="text-3xl sm:text-4xl font-black text-blue-600">{counts.years}+</div>
+              <div className="text-3xl sm:text-4xl font-black text-teal-600">{counts.years}+</div>
               <div className="text-gray-600 font-medium mt-1 text-sm sm:text-base">Years Experience</div>
             </div>
             <div className="transform hover:scale-110 transition-transform">
-              <div className="text-3xl sm:text-4xl font-black text-blue-600">{counts.customers}M+</div>
+              <div className="text-3xl sm:text-4xl font-black text-orange-600">{counts.customers}K+</div>
               <div className="text-gray-600 font-medium mt-1 text-sm sm:text-base">Happy Customers</div>
             </div>
             <div className="transform hover:scale-110 transition-transform">
-              <div className="text-3xl sm:text-4xl font-black text-blue-600">{counts.germRemoval}%</div>
-              <div className="text-gray-600 font-medium mt-1 text-sm sm:text-base">Germ Removal</div>
+              <div className="text-3xl sm:text-4xl font-black text-teal-600">{counts.germRemoval}+</div>
+              <div className="text-gray-600 font-medium mt-1 text-sm sm:text-base">Product Categories</div>
             </div>
             <div className="transform hover:scale-110 transition-transform">
-              <div className="text-3xl sm:text-4xl font-black text-blue-600">{counts.quality}%</div>
+              <div className="text-3xl sm:text-4xl font-black text-orange-600">{counts.quality}%</div>
               <div className="text-gray-600 font-medium mt-1 text-sm sm:text-base">Quality Assured</div>
             </div>
           </div>
@@ -533,7 +588,7 @@ export default function SafediXWebsite() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16" data-animate id="features-header">
             <h2 className={`text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 mb-4 transition-all duration-1000 ${isVisible['features-header'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-              Why Choose <span className="text-blue-600">Bharat Nest</span>?
+              Why Choose <span className="text-teal-600">Bharat Nest</span>?
             </h2>
             <p className={`text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto transition-all duration-1000 delay-200 ${isVisible['features-header'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
               Strategic expertise, reliable sourcing, and end-to-end private-label execution.
@@ -546,10 +601,10 @@ export default function SafediXWebsite() {
                 key={idx}
                 data-animate
                 id={`feature-${idx}`}
-                className={`bg-white p-6 sm:p-8 rounded-2xl shadow-md hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 ${isVisible[`feature-${idx}`] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                className={`bg-white p-6 sm:p-8 rounded-2xl shadow-md hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-2 border-transparent hover:border-teal-200 ${isVisible[`feature-${idx}`] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
                 style={{ transitionDelay: `${idx * 100}ms` }}
               >
-                <div className="text-blue-600 mb-4 transform hover:scale-110 hover:rotate-12 transition-transform">
+                <div className="text-teal-600 mb-4 transform hover:scale-110 hover:rotate-12 transition-transform">
                   {feature.icon}
                 </div>
                 <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">{feature.title}</h3>
@@ -565,48 +620,36 @@ export default function SafediXWebsite() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12" data-animate id="products-header">
             <h2 className={`text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 mb-4 transition-all duration-1000 ${isVisible['products-header'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-              Our Product <span className="text-blue-600">Categories</span>
+              Our Product <span className="text-orange-600">Categories</span>
             </h2>
             <p className={`text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto transition-all duration-1000 delay-200 ${isVisible['products-header'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-              Choose the perfect size for your family's needs
+              We offer ODM and OEM services across a wide range of food products,
             </p>
           </div>
 
           <div className="relative px-4 sm:px-12">
             <Carousel
-              opts={{
-                align: "start",
-                loop: true,
-              }}
-              plugins={[
-                Autoplay({
-                  delay: 3000,
-                }),
-              ]}
+              opts={{ align: "start", loop: true }}
+              plugins={[Autoplay({ delay: 3000 })]}
               className="w-full"
             >
               <CarouselContent className="-ml-2 sm:-ml-4">
                 {products.map((product, index) => (
                   <CarouselItem key={index} className="pl-2 sm:pl-4 md:basis-1/2 lg:basis-1/3">
                     <div className="p-1">
-                      <div className="bg-linear-to-br from-blue-50 to-white p-6 sm:p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border-2 border-blue-100 relative overflow-hidden group">
-                        {/* Badge */}
-                        <div className="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-bold transform rotate-3 group-hover:rotate-0 transition-transform">
+                      <div className="bg-linear-to-br from-orange-50 via-white to-teal-50 p-6 sm:p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border-2 border-orange-100 relative overflow-hidden group">
+                        <div className="absolute top-4 right-4 bg-linear-to-r from-orange-500 to-orange-600 text-white px-3 py-1 rounded-full text-xs font-bold transform rotate-3 group-hover:rotate-0 transition-transform">
                           {product.badge}
                         </div>
-
-                        {/* Icon */}
                         <div className="text-6xl mb-4 transform group-hover:scale-110 transition-transform">
-                          <Package className="w-16 h-16 text-blue-600 mx-auto" />
+                          <Package className="w-16 h-16 text-teal-600 mx-auto" />
                         </div>
-
-                        {/* Content */}
                         <div className="text-center">
                           <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">{product.name}</h3>
-                          <div className="text-3xl sm:text-4xl font-black text-blue-600 mb-2">{product.size}</div>
+                          <div className="text-3xl sm:text-4xl font-black text-teal-600 mb-2">{product.size}</div>
                           <p className="text-gray-600 mb-4 text-sm sm:text-base">{product.description}</p>
                           <div className="text-2xl sm:text-3xl font-black text-gray-900 mb-4">{product.price}</div>
-                          <button className="w-full bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-700 transition-all shadow-lg hover:shadow-xl font-semibold text-sm sm:text-base">
+                          <button className="w-full bg-linear-to-r from-orange-500 to-orange-600 text-white px-6 py-3 rounded-full hover:from-orange-600 hover:to-orange-700 transition-all shadow-lg hover:shadow-xl font-semibold text-sm sm:text-base">
                             Learn More
                           </button>
                         </div>
@@ -620,22 +663,20 @@ export default function SafediXWebsite() {
             </Carousel>
           </div>
 
-          {/* Mobile carousel indicators */}
           <div className="flex justify-center gap-2 mt-6 sm:hidden">
             {products.map((_, idx) => (
-              <div key={idx} className="w-2 h-2 rounded-full bg-blue-300"></div>
+              <div key={idx} className="w-2 h-2 rounded-full bg-teal-300"></div>
             ))}
           </div>
         </div>
       </section>
 
       {/* Benefits Section */}
-      <section id="benefits" className="py-20 px-4 sm:px-6 lg:px-8 bg-linear-to-br from-blue-600 to-blue-800 text-white relative overflow-hidden">
+      <section id="benefits" className="py-20 px-4 sm:px-6 lg:px-8 bg-linear-to-br from-teal-600 to-teal-800 text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-10 left-10 w-72 h-72 bg-white rounded-full blur-3xl animate-pulse-slow"></div>
           <div className="absolute bottom-10 right-10 w-96 h-96 bg-white rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '1.5s' }}></div>
         </div>
-
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div data-animate id="benefits-content">
@@ -650,7 +691,7 @@ export default function SafediXWebsite() {
                     style={{ transitionDelay: `${idx * 100}ms` }}
                   >
                     <div className="shrink-0 w-6 h-6 bg-white rounded-full flex items-center justify-center mt-1">
-                      <ChevronRight className="w-4 h-4 text-blue-600" />
+                      <ChevronRight className="w-4 h-4 text-teal-600" />
                     </div>
                     <p className="text-base sm:text-lg font-medium">{benefit}</p>
                   </div>
@@ -659,23 +700,12 @@ export default function SafediXWebsite() {
             </div>
 
             <div className="bg-white/10 backdrop-blur-sm p-6 sm:p-8 lg:p-12 rounded-3xl border border-white/20" data-animate id="benefits-sizes">
-              <h3 className={`text-2xl sm:text-3xl font-bold mb-6 transition-all duration-1000 ${isVisible['benefits-sizes'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>Perfect for Every Wash</h3>
-              <p className={`text-base sm:text-lg text-blue-100 leading-relaxed mb-6 transition-all duration-1000 delay-200 ${isVisible['benefits-sizes'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-                Whether it's everyday wear or your favorite whites, SAFEDI X delivers outstanding results every time.
-                Our advanced formula is designed to work efficiently in all washing conditions.
+              <h3 className={`text-2xl sm:text-3xl font-bold mb-6 transition-all duration-1000 ${isVisible['benefits-sizes'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>Our Promise💡</h3>
+              <p className={`text-base sm:text-lg text-white leading-relaxed mb-6 transition-all duration-1000 delay-200 ${isVisible['benefits-sizes'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+                We promise innovation backed by strong R&D, consistency supported by globally compliant manufacturing partners, and solutions tailored to your market needs.
+                Every product we support is developed with a focus on safety, scalability, and long-term brand value.
               </p>
-              <div className="grid grid-cols-2 gap-4 mt-8">
-                {['500g', '1kg', '2kg', '5kg'].map((size, idx) => (
-                  <div
-                    key={idx}
-                    className={`bg-white/10 p-4 rounded-xl text-center transform hover:scale-110 transition-all duration-300 hover:bg-white/20 ${isVisible['benefits-sizes'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-                    style={{ transitionDelay: `${(idx + 3) * 100}ms` }}
-                  >
-                    <div className="text-2xl sm:text-3xl font-black">{size}</div>
-                    <div className="text-xs sm:text-sm text-blue-100 mt-1">{['Starter', 'Family', 'Value', 'Jumbo'][idx]} Pack</div>
-                  </div>
-                ))}
-              </div>
+
             </div>
           </div>
         </div>
@@ -686,7 +716,7 @@ export default function SafediXWebsite() {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12" data-animate id="faq-header">
             <h2 className={`text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 mb-4 transition-all duration-1000 ${isVisible['faq-header'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-              Frequently Asked <span className="text-blue-600">Questions</span>
+              Frequently Asked <span className="text-orange-600">Questions</span>
             </h2>
             <p className={`text-lg sm:text-xl text-gray-600 transition-all duration-1000 delay-200 ${isVisible['faq-header'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
               Everything you need to know about BharatNest
@@ -701,7 +731,7 @@ export default function SafediXWebsite() {
                   value={`item-${index}`}
                   className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow border border-gray-200 overflow-hidden"
                 >
-                  <AccordionTrigger className="px-6 py-4 text-left hover:no-underline hover:bg-blue-50 transition-colors">
+                  <AccordionTrigger className="px-6 py-4 text-left hover:no-underline hover:bg-orange-50 transition-colors">
                     <span className="text-base sm:text-lg font-bold text-gray-900 pr-4">{faq.question}</span>
                   </AccordionTrigger>
                   <AccordionContent className="px-6 pb-4 text-sm sm:text-base text-gray-600 leading-relaxed">
@@ -744,11 +774,12 @@ export default function SafediXWebsite() {
             </p>
           </div>
 
+
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12">
             {[
-              { icon: <Phone className="w-6 sm:w-8 h-6 sm:h-8 text-blue-600" />, title: 'Call Us', content: '+91 81302 06718', href: 'tel:+918130206718' },
-              { icon: <Mail className="w-6 sm:w-8 h-6 sm:h-8 text-blue-600" />, title: 'Email Us', content: 'contact@bharthnest.com', href: 'mailto:contact@bharthnest.com' },
-              { icon: <MapPin className="w-6 sm:w-8 h-6 sm:h-8 text-blue-600" />, title: 'Visit Us', content: 'Bharthnest Industries', href: '#' }
+              { icon: <Phone className="w-6 sm:w-8 h-6 sm:h-8 text-teal-600" />, title: 'Call Us', content: '+91 9136044030', href: 'tel:+919136044030' },
+              { icon: <Mail className="w-6 sm:w-8 h-6 sm:h-8 text-teal-600" />, title: 'Email Us', content: 'Bharatnestconsumer@gmail.com', href: 'Bharatnestconsumer@gmail.com' },
+              { icon: <MapPin className="w-6 sm:w-8 h-6 sm:h-8 text-teal-600" />, title: 'Visit Us', content: 'Bharthnest Industries', href: 'https://www.google.com/maps?q=19.0101337,73.0336838' }
             ].map((item, idx) => (
               <div
                 key={idx}
@@ -757,11 +788,11 @@ export default function SafediXWebsite() {
                 className={`bg-white p-6 sm:p-8 rounded-2xl shadow-md text-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 ${isVisible[`contact-${idx}`] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
                 style={{ transitionDelay: `${idx * 100}ms` }}
               >
-                <div className="bg-blue-100 w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mx-auto mb-4 transform hover:scale-110 transition-transform">
+                <div className="bg-orange-100 w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mx-auto mb-4 transform hover:scale-110 transition-transform">
                   {item.icon}
                 </div>
                 <h3 className="font-bold text-gray-900 mb-2 text-base sm:text-lg">{item.title}</h3>
-                <a href={item.href} className="text-blue-600 hover:underline break-all text-sm sm:text-base">{item.content}</a>
+                <a href={item.href} className="text-teal-600 hover:underline break-all text-sm sm:text-base">{item.content}</a>
               </div>
             ))}
           </div>
@@ -776,7 +807,7 @@ export default function SafediXWebsite() {
                     name="name"
                     value={formData.name}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 transition-all text-sm sm:text-base"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-600 transition-all text-sm sm:text-base"
                     placeholder="Your name" required
                   />
                 </div>
@@ -787,7 +818,7 @@ export default function SafediXWebsite() {
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 transition-all text-sm sm:text-base"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-600 transition-all text-sm sm:text-base"
                     placeholder="your@email.com" required
                   />
                 </div>
@@ -799,7 +830,7 @@ export default function SafediXWebsite() {
                   name="phone"
                   value={formData.phone}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 transition-all text-sm sm:text-base"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-600 transition-all text-sm sm:text-base"
                   placeholder="+91 00000 00000" required
                 />
               </div>
@@ -810,7 +841,7 @@ export default function SafediXWebsite() {
                   value={formData.message}
                   onChange={handleInputChange}
                   rows="4"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 transition-all text-sm sm:text-base"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-600 transition-all text-sm sm:text-base"
                   placeholder="How can we help you?" required
                 ></textarea>
               </div>
@@ -820,12 +851,46 @@ export default function SafediXWebsite() {
               {success && <p className="text-green-600 text-sm">{success}</p>}
               <button
                 type="submit"
-                className="w-full bg-blue-600 text-white px-8 py-4 rounded-full hover:bg-blue-700 transition-all font-semibold text-base sm:text-lg shadow-lg hover:shadow-xl transform hover:scale-105"
+                className="w-full bg-linear-to-r from-orange-500 to-orange-600 text-white px-8 py-4 rounded-full hover:from-orange-600 hover:to-orange-700 transition-all font-semibold text-base sm:text-lg shadow-lg hover:shadow-xl transform hover:scale-105"
               >
                 Send Message
               </button>
 
             </form>
+             <div className="fixed bottom-6 right-6 z-50">
+      <button
+        onClick={handleClick}
+        className="group flex items-center gap-3 bg-[#25D366] hover:bg-[#20BA5A] text-white rounded-full transition-all duration-300 shadow-lg hover:shadow-xl"
+        aria-label="Chat on WhatsApp"
+      >
+        {/* Mobile: Just icon */}
+        <div className="lg:hidden p-4">
+          <svg
+            className="w-7 h-7"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+          </svg>
+        </div>
+
+        {/* Desktop: Pill with icon and text */}
+        <div className="hidden lg:flex items-center gap-3 py-4 pl-5 pr-6">
+          <svg
+            className="w-6 h-6"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+          </svg>
+          <span className="font-medium text-base whitespace-nowrap">
+            Chat on WhatsApp
+          </span>
+        </div>
+      </button>
+    </div>
           </div>
         </div>
       </section>
@@ -836,38 +901,38 @@ export default function SafediXWebsite() {
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
             <div className="col-span-2 sm:col-span-1">
               <div className="text-2xl font-black text-white mb-3">
-                <span className="text-blue-400">Bharat</span>Nest
+                <span className="text-white">BharatNest</span>
               </div>
               <p className="text-gray-400 text-sm">
-                Premium detergent powder for superior cleaning and care.
+                Your Global ODM & OEM Partner for Food and Non-Food Manufacturing
               </p>
             </div>
 
             <div>
               <h4 className="text-white font-bold mb-3 text-sm sm:text-base">Quick Links</h4>
               <ul className="space-y-2 text-sm">
-                <li><a href="#home" className="hover:text-blue-400 transition-colors">Home</a></li>
-                <li><a href="#features" className="hover:text-blue-400 transition-colors">Features</a></li>
-                <li><a href="#products" className="hover:text-blue-400 transition-colors">Products</a></li>
-                <li><a href="#benefits" className="hover:text-blue-400 transition-colors">Benefits</a></li>
+                <li><a href="#home" className="hover:text-orange-400 transition-colors">Home</a></li>
+                <li><a href="#features" className="hover:text-orange-400 transition-colors">Features</a></li>
+                <li><a href="#products" className="hover:text-orange-400 transition-colors">Products</a></li>
+                <li><a href="#benefits" className="hover:text-orange-400 transition-colors">Benefits</a></li>
               </ul>
             </div>
 
             <div>
               <h4 className="text-white font-bold mb-3 text-sm sm:text-base">Company</h4>
               <ul className="space-y-2 text-sm">
-                <li><a href="#about" className="hover:text-blue-400 transition-colors">About Us</a></li>
-                <li><a href="#faq" className="hover:text-blue-400 transition-colors">FAQ</a></li>
-                <li><a href="#" className="hover:text-blue-400 transition-colors">Privacy Policy</a></li>
-                <li><a href="#" className="hover:text-blue-400 transition-colors">Terms of Service</a></li>
+                <li><a href="#about" className="hover:text-orange-400 transition-colors">About Us</a></li>
+                <li><a href="#faq" className="hover:text-orange-400 transition-colors">FAQ</a></li>
+                <li><a href="#" className="hover:text-orange-400 transition-colors">Privacy Policy</a></li>
+                <li><a href="#" className="hover:text-orange-400 transition-colors">Terms of Service</a></li>
               </ul>
             </div>
 
             <div>
               <h4 className="text-white font-bold mb-3 text-sm sm:text-base">Connect</h4>
               <ul className="space-y-2 text-sm">
-                <li><a href="tel:+918130206718" className="hover:text-blue-400 transition-colors">+91 81302 06718</a></li>
-                <li><a href="mailto:contact@bharthnest.com" className="hover:text-blue-400 transition-colors break-all">contact@bharthnest.com</a></li>
+                <li><a href="tel:+918130206718" className="hover:text-orange-400 transition-colors">+91 9136044030</a></li>
+                <li><a href="mailto:bharatnestconsumer@gmail.com" className="hover:text-orange-400 transition-colors break-all">bharatnestconsumer@gmail.com</a></li>
               </ul>
             </div>
           </div>
@@ -877,6 +942,7 @@ export default function SafediXWebsite() {
           </div>
         </div>
       </footer>
+
     </div>
   );
 }
